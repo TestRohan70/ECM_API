@@ -32,7 +32,12 @@ namespace EcommerceAPI.Controllers
         {
             var productId = await _productService.CreateProductAsync(dto);
 
-            return Ok(productId);
+            return Ok(new
+            {
+                Success = true,
+                Message = "Product created successfully",
+                ProductId = productId
+            });
         }
 
         [HttpPut("{id}")]
