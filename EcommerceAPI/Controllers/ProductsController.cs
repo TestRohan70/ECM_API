@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EcommerceAPI.Models;
+    using EcommerceAPI.DTOs;
+using EcommerceAPI.Services.Interfaces;
 
 namespace EcommerceAPI.Controllers
 {
@@ -8,10 +10,13 @@ namespace EcommerceAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly EcommerceDbContext _context;
+        private readonly IProductService _productService;
 
-        public ProductsController(EcommerceDbContext context)
+        public ProductsController(EcommerceDbContext context, IProductService productService)
         {
             _context = context;
+            _productService = productService;
+
         }
 
         [HttpGet]
@@ -22,17 +27,13 @@ namespace EcommerceAPI.Controllers
             return Ok(products);
         }
 
-
         [HttpPost]
-        public IActionResult AddProduct(Product product)
+        public async Task<IActionResult> AddProduct(CreateProductDto dto)
         {
-            _context.Products.Add(product);
+            var productId = await _productService.CreateProductAsync(dto);
 
-            _context.SaveChanges();
-
-            return Ok(product);
+            return Ok(productId);
         }
-
 
         [HttpPut("{id}")]
         public IActionResult UpdateProduct(int id, Product updatedProduct)
