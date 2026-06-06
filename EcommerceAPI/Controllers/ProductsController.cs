@@ -47,7 +47,7 @@ namespace EcommerceAPI.Controllers
             product.ProductName = updatedProduct.ProductName;
             product.Description = updatedProduct.Description;
             product.Price = updatedProduct.Price;
-            product.StockQty = updatedProduct.StockQty;
+           // product.StockQty = updatedProduct.StockQty;
             product.ImageUrl = updatedProduct.ImageUrl;
             product.CategoryId = updatedProduct.CategoryId;
 

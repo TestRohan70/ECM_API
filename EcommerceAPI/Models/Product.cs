@@ -36,4 +36,7 @@ public partial class Product
     public bool IsDeleted { get; set; }
 
     public virtual ICollection<ProductInventory> ProductInventories { get; set; } = new List<ProductInventory>();
+    public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
+
+
 }

@@ -22,6 +22,6 @@
 
         public List<ProductInventoryDto> Inventories { get; set; } = [];
 
-        public List<string> Images { get; set; } = [];
+        public List<ProductImageDto> Images { get; set; } = [];
     }
 }
