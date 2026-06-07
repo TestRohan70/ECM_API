@@ -2,6 +2,7 @@
 using EcommerceAPI.Models;
     using EcommerceAPI.DTOs;
 using EcommerceAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EcommerceAPI.Controllers
 {
@@ -19,6 +20,8 @@ namespace EcommerceAPI.Controllers
 
         }
 
+       
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult GetProducts()
         {
@@ -50,12 +53,17 @@ namespace EcommerceAPI.Controllers
                 return NotFound();
             }
 
-            product.ProductName = updatedProduct.ProductName;
-            product.Description = updatedProduct.Description;
-            product.Price = updatedProduct.Price;
-           // product.StockQty = updatedProduct.StockQty;
-            product.ImageUrl = updatedProduct.ImageUrl;
-            product.CategoryId = updatedProduct.CategoryId;
+            product.ProductName   = updatedProduct.ProductName;
+            product.CategoryId    = updatedProduct.CategoryId;
+            product.Brand         = updatedProduct.Brand;
+            product.Description   = updatedProduct.Description;
+            product.Sku           = updatedProduct.Sku;
+            product.Price         = updatedProduct.Price;
+            product.DiscountPrice = updatedProduct.DiscountPrice;
+            product.Weight        = updatedProduct.Weight;
+            product.IsFeatured    = updatedProduct.IsFeatured;
+            product.IsActive      = updatedProduct.IsActive;
+            product.ImageUrl      = updatedProduct.ImageUrl;
 
             _context.SaveChanges();
 

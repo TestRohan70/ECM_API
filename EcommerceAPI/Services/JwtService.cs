@@ -21,7 +21,8 @@ namespace EcommerceAPI.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.UserName ?? string.Empty)
+                new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
+                new Claim(ClaimTypes.Role, user.Role ?? string.Empty)
             };
 
             var key = new SymmetricSecurityKey(
